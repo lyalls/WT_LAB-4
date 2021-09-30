@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EB BILL</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+  body{
+    margin: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    justify-content: center;
+    background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 25%, rgba(253,187,45,1) 96%);
+}
+input{
+  font-weight: bold;
+}
+</style>
+
+<body>
+  <div class="container-fluid">
+    <h1 class="text-center text-dark">EB BILL CALCULATOR</h1>
+</div>
+  <script>
+    
+    function calc() {
+      const units = parseInt(document.getElementById("unit").value);
+      const load = parseInt(document.getElementById("load").value);
+      var Tariff = document.getElementById("Tariff").value;
+      var amount;
+      
+      if (Tariff == "Domestic") {
+        if (units >= 0 && units <= 100) {
+          document.getElementById("result").value = units * 0;
+          document.getElementById("fc").value = 0;
+        } else if (units >= 101 && units <= 200) {
+          document.getElementById("result").value = (100 * 0) + ((units - 100) * 1.5) + 20;
+          document.getElementById("fc").value = 20;
+        } else if (units >= 201 && units <= 500) {
+          document.getElementById("result").value = (100 * 0) + (100 * 2) + ((units - 200) * 3) + 30;
+          document.getElementById("fc").value = 30;
+        } else if (units > 500) {
+          document.getElementById("result").value = (100 * 0) + (100 * 3.5) + (300 * 4.6) + ((units - 500) * 6.6) + 50;
+          document.getElementById("fc").value = 50;
+        } else {
+          document.getElementById("result").value = "Wrong unit";
+        }
+      } else {
+        if (units <= 100) {
+        amount = units * 5;
+        } else {
+        amount = units * 8.05;
+        }
+        document.getElementById("fc").value = load * 70;
+        document.getElementById("result").value = (amount + (load * 70));
+      }
+      return 0;
+    }
+
+  </script>
+
+
+  <div class="container">
+    <div class="form-group">
+
+   
+    <select class="custom-select mr-sm-2" id="Tariff">
+      <option selected CLASS="text-center">--Select--</option><br><br>
+      <option value="Domestic">Domestic</option><br><br>
+      <option value="Commercial">Commercial</option><br><br>
+    </select><br><br><br><br>
+
+    
+      <div class="form-group">
+      
+        <input type="number" class="form-control " id="unit" placeholder="Enter consumed Units"><br><br>
+      </div>
+    
+
+    
+      <div class="form-group">
+       
+        <input type="number" class="form-control " id="load" placeholder="Enter consumed load"><br><br>
+      </div>
+     
+
+
+    <div class="form-group">
+      
+      <input type="text" class="form-control " id="fc" placeholder="Fixed cost in Rs."><br><br>
+    </div>
+     
+
+    <div class="form-group">
+    
+        <input type="text" class="form-control " id="result" placeholder=" Bill Amount in Rs."><br><br>
+      </div>
+    
+
+    <button onclick="calc();" type="submit" class="btn-lg btn-dark text-center">Calculate</button>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+  <footer class="fixed-bottom">
+
+   
+      
+    </div></div>
+  </footer>
+</body>
+
+</html>
